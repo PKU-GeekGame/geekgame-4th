@@ -5,6 +5,7 @@
 | 选手 | 公开理由 | 总分 | 授权 | Tutorial | Misc | Web | Binary | Algorithm |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Fancia Dream \#早安](965/) | 选手要求 | 5761 | CC-BY-NC | `P` | `PPPP2` | `PPP1P` | `PP2P1` | `PPPPP` |
+| [intlsy \# Kiana Kaslana](1047/) | 选手要求 | 5376 | CC-BY-NC | `P` | `PPP22` | `PPPPP` | `PPPP1` | `PPP1P` |
 | [ouuan \#wp交的pdf但博客有源码](1549/) |  | 5358 | CC-BY-NC | `P` | `PP-22` | `PPPPP` | `PP2P1` | `PPP1P` |
 | [Lost\-MSth](28/) | 选手要求 | 5250 | CC-BY-NC | `P` | `PPPP2` | `PPPPP` | `PP2-1` | `P-P1P` |
 | [kinami \# 关注谜协谢谢喵](1451/) | 选手要求 | 5212 | CC-BY-NC | `P` | `PPPP2` | `PPPPP` | `PP2--` | `PPP1P` |

