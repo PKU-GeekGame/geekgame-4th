@@ -40,7 +40,7 @@
 
 把这些操作合在一起，我们可以打出丝滑小连招，在 71 秒内遍历完所有 .txt 文件（遍历到含有 Flag 的文件为止则不需要这么长时间，具体取决于你的运气）。请看 VCR：
 
-https://github.com/user-attachments/assets/4b4ae549-109f-42f5-a6cb-d6fcbcebe4f9
+https://github.com/user-attachments/assets/897144b1-bb33-4d6e-bf01-5d815c4be757
 
 Peppy 说，完成上述这些操作仅需 21pp。是不是非常简单呢？
 

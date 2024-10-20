@@ -95,7 +95,7 @@ Flag 2 需要解码 sunshine 的视频数据。sunshine 的视频数据默认是
 
 我写的脚本在 `sol/decode_video.py`，它能直接把 JSON 结果转换成 100% 精确（毫无花屏）的 H264 视频流，拿 ffmpeg 放一下就能看到 Flag。下面是转换成 MP4 之后的视频：
 
-https://github.com/user-attachments/assets/e8106f84-d75c-46c3-a3f3-e26821952aa9
+https://github.com/user-attachments/assets/f346468c-59b7-4381-aef7-72861ac7c2d0
 
 当然，我做得这么复杂纯粹是因为我是出题人，需要给一个比较严谨的解法，而你可以各种胡搞。GeekGame是这样的，选手只需要糊出 Flag 就好了，而出题人考虑的可就多了。第二阶段提示就在暗示这一点，可惜有人没看懂，还怪提示没用，我不说是谁。
 
