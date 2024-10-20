@@ -1,0 +1,5 @@
+cyaron>=0.6.0
+playwright>=1.47.0
+pwntools>=4.13.1
+virtualkeys
+scapy

