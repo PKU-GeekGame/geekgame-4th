@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>不许复制 · Expert 难度</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(270deg, #000000, #003300, #000000);
+            background-size: 600% 600%;
+            animation: gradientAnimation 15s ease infinite;
+            color: #0F0;
+            font-family: "comic sans ms", sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        #inputContainer {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 6;
+            display: flex;
+            align-items: center;
+        }
+        #noiseInput {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #0F0;
+            background-color: #000;
+            color: #0F0;
+            outline: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        #noiseInput:focus {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #0F0;
+        }
+
+        #submitBtn {
+            margin-left: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #0F0;
+            background-color: #000;
+            color: #0F0;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        #submitBtn:hover {
+            background-color: #0F0;
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #0F0;
+        }
+
+        #message {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 7;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #0F0;
+            padding: 10px 20px;
+            border: 2px solid #0F0;
+            border-radius: 5px;
+            display: none;
+            opacity: 0;
+            animation: fadeInOut 4s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        #message.error {
+            border-color: #F00;
+            color: #F00;
+        }
+
+        #message.success {
+            border-color: #0F0;
+            color: #0F0;
+        }
+
+        #root {
+            display: none;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">{{ data.challenge }}</div>
+
+    <div id="inputContainer">
+        <form action="?" method="post">
+            <input type="text" id="noiseInput" name="response" placeholder="输入验证码" autocomplete="off" required pattern="[IJl\|1O0\(\)i!\s]+">
+            <input type="hidden" name="ts" value="{{ data.ts }}">
+            <input type="hidden" name="certificate" value="{{ data.certificate }}">
+            <button id="submitBtn" type="submit">提交</button>
+        </form>
+    </div>
+
+    <script src="/static/js/page2.max.js"></script>
+</body>
+</html>

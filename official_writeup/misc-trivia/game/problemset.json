@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "question_html": "在清华大学百年校庆之际，北京大学向清华大学赠送了一块石刻。石刻<b>最上面</b>一行文字是什么？",
+    "answer_validator": "^[\\u4E00-\\u9FFF\\w]{10,15}$",
+    "answer": ["贺清华大学建校100周年"]
+  },
+  {
+    "id": "2",
+    "question_html": "有一个微信小程序收录了北京大学的流浪猫。小程序中的流浪猫照片被存储在了哪个域名下？",
+    "answer_validator": "^[a-z.-]+$",
+    "answer": ["pku-lostangel.oss-cn-beijing.aliyuncs.com"]
+  },
+  {
+    "id": "3",
+    "question_html": "在 Windows 支持的标准德语键盘中，一些字符需要同时按住 AltGr 和另一个其他按键来输入。需要通过这种方式输入的字符共有多少个？",
+    "answer_validator": "^\\d+$",
+    "answer": ["12"]
+  },
+  {
+    "id": "4",
+    "question_html": "比赛平台的排行榜顶部的图表是基于 <code>@antv/g2</code> 这个库渲染的。实际使用的版本号是多少？",
+    "answer_validator": "^[\\d.]+$",
+    "answer": ["5.2.1"]
+  },
+  {
+    "id": "5",
+    "question_html": "在全新安装的 Ubuntu Desktop 22.04 系统中，把音量从 75% 调整到 25% 会使声音减小多少分贝？（保留一位小数）",
+    "answer_validator": "^\\d+\\.\\d$",
+    "answer": ["28.6"]
+  },
+  {
+    "id": "6",
+    "question_html": "<a href=/static/osint-challenge.webp target=_blank>这张照片</a>用红框圈出了一个建筑。离它最近的已开通地铁站是什么？",
+    "answer_validator": "^[^站]+$",
+    "answer": ["通州北关"]
+  }
+]

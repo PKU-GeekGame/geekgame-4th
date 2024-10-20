@@ -1,0 +1,120 @@
+::-webkit-scrollbar {
+    display: none;
+}
+.container {
+    max-width: 650px;
+    margin: 0 auto;
+    display: flex;
+    padding: 0 .5rem;
+}
+
+.header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 1.5em;
+    background-color: #F6F6F6;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.send-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    margin-bottom: 1em;
+}
+.send-bar>.container>* {
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 1.5em;
+    border: 3px solid #E8E9EB;
+    margin: 0 .5rem;
+}
+.send-btn {
+    background-color: #F6F6F6;
+    cursor: pointer;
+    width: 3rem;
+    text-align: center;
+    font-size: 1.5em;
+}
+.send-bar input {
+    font-size: 1.25em;
+    padding: 0 1rem;
+}
+
+.send-bar>.container {
+    flex-direction: row;
+}
+.send-bar input {
+    flex: 1;
+}
+
+.msg-history {
+    margin: 4rem 0 5rem 0;
+}
+
+.msg-history>.container {
+    flex-direction: column;
+}
+
+.msg {
+    animation: fade-in 400ms;
+    margin: .5rem 0;
+    display: flex;
+    flex-direction: row;
+}
+.msg-box {
+    flex: 1;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1.2em;
+    background-color: #E9E9EB;
+    font-family: 'Consolas', monospace;
+}
+.msg-recv {
+    margin-right: 230px;
+}
+.msg-send {
+    margin-left: 230px;
+    text-align: right;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(2rem) scale(.75);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sticker {
+    border-radius: .5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: .5rem;
+}
+
+audio {
+    width: 245px;
+    height: 2rem;
+    vertical-align: middle;
+}
+
+.popup {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.popup-hide {
+    display: none;
+}
+.popup>img {
+    width: 590px;
+}

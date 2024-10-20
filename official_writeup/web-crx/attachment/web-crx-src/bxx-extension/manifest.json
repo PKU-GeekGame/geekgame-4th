@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "并夕夕浏览器助手",
+    "description": "PY消息即时抢先看，三折叠浏览一键丝滑getshell，题面搜索快速找CSDN问答，奶龙壁纸自由随心切换，CSRF、LFI加速升级中！",
+    "version": "2.0.4",
+    "permissions": ["tabs", "scripting"],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "icons": {
+        "48": "icon_48.png",
+        "128": "icon_128.png"
+    },
+    "background": {
+        "service_worker": "background.bundle.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": ["contentScript.bundle.js"]
+        }
+    ],
+    "chrome_url_overrides": {
+        "newtab":"newtab.html"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["iframe.html"],
+            "matches": ["*://*/*"]
+        }
+    ]
+}

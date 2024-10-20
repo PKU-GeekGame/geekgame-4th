@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TAS概论</title>
+    <style>
+        .editor-container {
+            margin-right: 520px;
+        }
+        .key-editor {
+            margin: auto;
+            border-spacing: 0;
+        }
+        .key-editor thead {
+            position: sticky;
+            top: 0;
+            background-color: #ddd !important;
+            font-size: 1.2em;
+        }
+        .key-editor td {
+            width: 2.5rem;
+        }
+        .key-editor tr:hover {
+            background-color: #ddf;
+        }
+        .key-editor td:nth-child(1) {
+            width: 5rem;
+        }
+        .key-editor td:nth-child(10) {
+            width: 12rem;
+            text-align: left;
+        }
+        .key-editor td {
+            text-align: center;
+            font-size: 1.5em;
+        }
+        .key-editor td:nth-child(1) {
+            text-align: right;
+            padding-right: .5rem;
+        }
+        .key-editor input {
+            width: 2.5rem;
+            height: 2rem;
+            font-size: 1em;
+        }
+        .key-editor input[type=number] {
+            width: 4.5rem;
+        }
+        .key-editor button {
+            margin-left: 1rem;
+            width: 5rem;
+            height: 2.5rem;
+            font-size: 1em;
+        }
+        #adder-row {
+            background-color: #ddd;
+        }
+
+        .editor-panel {
+            font-size: 1.2em;
+        }
+        .editor-panel input, .editor-panel button {
+            font-size: 1em;
+        }
+        .editor-panel label {
+            padding-right: .5rem;
+        }
+
+        #right-box {
+            position: fixed;
+            right: 0;
+            margin-right: .5rem;
+        }
+
+        @media(max-width: 1200px) {
+            #right-box {
+                position: initial;
+                margin-bottom: 1rem;
+            }
+            .editor-container {
+                margin-right: 0;
+            }
+        }
+
+        #init-ram-line input {
+            width: 300px;
+        }
+
+        #vnc-viewer {
+            width: 512px;
+            height: 474px;
+        }
+	#launch-frame {
+            width: 512px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div id="right-box">
+        <form id="launch-form" action="/launch" method="post" target="launch-frame" enctype="multipart/form-data">
+            <fieldset class="editor-panel">
+                <legend>编辑器操作</legend>
+                <p>
+                    任务：
+                    <label>
+                        <input type="radio" name="level" value="1" checked onchange="switch_lv(1)"> Flag 1
+                    </label>
+                    <label>
+                        <input type="radio" name="level" value="2" onchange="switch_lv(2)"> Flag 2
+                    </label>
+                    <label>
+                        <input type="radio" name="level" value="3" onchange="switch_lv(3)"> Flag 3
+                    </label>
+                </p>
+                <p id="init-ram-line" style="display: none">
+                    <label>
+                        初始内存：
+                        <input type="file" name="init_ram">
+                    </label>
+                </p>
+                <p>
+                    <button type="button" onclick="if(confirm('清空编辑器的输入吗？')) clear_all()">清空输入</button>
+                    <button type="button" onclick="import_file()">导入文件</button>
+                    <button type="button" onclick="download_file()">导出文件</button>
+                    &emsp;
+                    <button type="button" onclick="submit_form()" style="font-weight: bold">【游戏，启动】</button>
+                </p>
+                <input type="file" id="file-import" style="display: none">
+                <input type="file" id="file-export" name="movie_file" style="display: none">
+            </fieldset>
+        </form>
+
+        <br>
+
+	<div><iframe name="launch-frame" id="launch-frame"></iframe></div>
+	<div><iframe id="vnc-viewer" src="/novnc/vnc_lite.html"></iframe></div>
+    </div>
+
+    <div class="editor-container">
+        <table class="key-editor">
+            <thead>
+                <tr>
+                    <th>#帧</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>选择</th>
+                    <th>开始</th>
+                    <th>↑</th>
+                    <th>↓</th>
+                    <th>←</th>
+                    <th>→</th>
+                    <th>重复</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="adder-row">
+                    <td>0</td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="number" min="1"><button onclick="add_row()">添加</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let adder_row = document.querySelector('#adder-row');
+        let tbody = adder_row.parentElement;
+
+        let inputs = [null, ...adder_row.querySelectorAll('input')];
+
+        for(let input of inputs) {
+            if(input)
+                input.addEventListener('keydown', function(e) {
+                    if(e.key==='Enter') {
+                        add_row();
+                    }
+                }, {passive: true});
+        }
+
+        let frameno = 0;
+        function calc_frames() {
+            frameno = 0;
+            for(let tr of tbody.children) {
+                if(tr.id==='adder-row') {
+                    tr.children[0].textContent = frameno;
+                    break;
+                }
+                
+                tr.children[0].textContent = frameno;
+
+                let repeat = tr.children[9].children[0].value;
+                frameno += parseInt(repeat || '1');
+            }
+        }
+
+        function clear_all() {
+            for(let elem of [...tbody.children]) {
+                if(elem.id==='adder-row')
+                    continue;
+                elem.remove();
+            }
+            calc_frames();
+        }
+
+        function add_row() {
+            let tr = document.createElement('tr');
+            for(let i=0; i<10; i++) {
+                let td = document.createElement('td');
+                if(i===0) {
+                    td.textContent = frameno;
+                } else if(i>=1 && i<=8) {
+                    let input = document.createElement('input');
+                    input.type = 'checkbox';
+                    input.checked = inputs[i].checked;
+                    td.appendChild(input);
+                } else {
+                    let input = document.createElement('input');
+                    input.type = 'number';
+                    input.min = 1;
+                    let f = parseInt(inputs[i].value || '1');
+                    input.value = f;
+                    frameno += f;
+                    input.addEventListener('change', function() {
+                        calc_frames();
+                    }, {passive: true});
+                    td.appendChild(input);
+                    let del_btn = document.createElement('button');
+                    del_btn.textContent = '删除';
+                    del_btn.addEventListener('click', function() {
+                        tbody.removeChild(tr);
+                        calc_frames();
+                    });
+                    td.appendChild(del_btn);
+                }
+                tr.appendChild(td);
+            }
+            tbody.insertBefore(tr, adder_row);
+            adder_row.children[0].textContent = frameno;
+        }
+
+        function add_byte(b, cnt) {
+            let tr = document.createElement('tr');
+            for(let i=0; i<10; i++) {
+                let td = document.createElement('td');
+                if(i===0) {
+                    td.textContent = frameno;
+                } else if(i>=1 && i<=8) {
+                    let input = document.createElement('input');
+                    input.type = 'checkbox';
+                    input.checked = !!((b >> (i-1)) & 1);
+                    td.appendChild(input);
+                } else {
+                    let input = document.createElement('input');
+                    input.type = 'number';
+                    input.min = 1;
+                    input.value = cnt;
+                    frameno += cnt;
+                    input.addEventListener('change', function() {
+                        calc_frames();
+                    }, {passive: true});
+                    td.appendChild(input);
+                    let del_btn = document.createElement('button');
+                    del_btn.textContent = '删除';
+                    del_btn.addEventListener('click', function() {
+                        tbody.removeChild(tr);
+                        calc_frames();
+                    });
+                    td.appendChild(del_btn);
+                }
+                tr.appendChild(td);
+            }
+            tbody.insertBefore(tr, adder_row);
+        }
+
+        let file_import = document.getElementById('file-import');
+        file_import.addEventListener('change', function() {
+            let file = this.files[0];
+            if(!file)
+                return;
+            let reader = new FileReader();
+            reader.onload = function() {
+                file_import.value = '';
+                
+                let buffer = reader.result;
+                let dv = new DataView(buffer);
+                
+                if(dv.byteLength===0)
+                    return;
+
+                if(dv.byteLength>36000) {
+                    alert('太大了，不好！');
+                    return;
+                }
+
+                clear_all();
+
+                let prev_byte = dv.getUint8(0);
+                let prev_cnt = 1;
+                for(let i=1; i<dv.byteLength; i++) {
+                    let byte = dv.getUint8(i);
+                    if(byte===prev_byte) {
+                        prev_cnt++;
+                    } else {
+                        add_byte(prev_byte, prev_cnt);
+                        prev_byte = byte;
+                        prev_cnt = 1;
+                    }
+                }
+                add_byte(prev_byte, prev_cnt);
+
+                calc_frames();
+            };
+            reader.readAsArrayBuffer(file);
+        });
+        function import_file() {
+            file_import.click();
+        }
+
+        function gen_file() {
+            let content = new Uint8Array(frameno);
+            let ptr = 0;
+            for(let tr of tbody.children) {
+                if(tr.id==='adder-row')
+                    break;
+                let byte = 0;
+                for(let i=1; i<=8; i++) {
+                    if(tr.children[i].children[0].checked)
+                        byte |= 1 << (i-1);
+                }
+                let cnt = parseInt(tr.children[9].children[0].value);
+                for(let i=0; i<cnt; i++) {
+                    content.set([byte], ptr);
+                    ptr++;
+                }
+            }
+
+            if(ptr!==frameno) {
+                alert('帧数错误！');
+                return;
+            }
+            if(ptr===0) {
+                alert('编辑器中没有输入！');
+                return;
+            }
+            return new File([content], `input-${frameno}.bin`);
+        }
+
+        function download_file() {
+            let f = gen_file();
+            if(!f)
+                return;
+
+            let url = URL.createObjectURL(f);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = f.name;
+            a.click();
+        }
+
+        function switch_lv(lv) {
+            let init_ram_line = document.getElementById('init-ram-line');
+            if(lv===3)
+                init_ram_line.style.display = 'initial';
+            else
+                init_ram_line.style.display = 'none';
+        }
+
+        function submit_form() {
+            let f = gen_file();
+            if(!f)
+                return;
+
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(f);
+            document.getElementById('file-export').files = dataTransfer.files;
+
+            document.getElementById('launch-form').submit();
+        }
+
+        function demo_data() {
+            add_byte(0b00000000, 60);
+            add_byte(0b00001000, 1);
+            add_byte(0b00000000, 180);
+            add_byte(0b10000000, 60);
+            add_byte(0b00000000, 120);
+            calc_frames();
+        }
+        demo_data();
+    </script>
+</body>
+</html>

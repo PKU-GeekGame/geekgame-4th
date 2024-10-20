@@ -1,0 +1,24 @@
+师傅py吗
+ < 你要哪几个flag
+
+2和3吧
+ < 两个flag换两个flag
+
+大哥我是学生，一个行不？
+ < 行吧，那你拿flag1来换
+
+【加密】flag{onlyapplecando}
+ < 别急我先试试对不对
+ < (*) 好像是对的，谢谢师傅
+
+ < flag2是
+ < flag{BigBrotherIsWatchingYou!!}
+ < flag3是
+
+等下
+有内鬼
+ < 那我混淆一下发给你吧
+ < flag{<audio:2825628257282931>}
+
+好的好的
+ < 合作愉快

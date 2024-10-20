@@ -1,0 +1,53 @@
+G1397   R
+K1159   I
+G1485   G
+C7401   E/N
+D6266 o E
+C7473   E/N
+G276  o I
+G8343   E
+G5556 o E
+D7321   N
+T136  o O
+D1      ?
+D2    o ?
+C665    E
+D3324 o R
+G6357   C
+K1160 o I
+D2282 o O
+G830  o G
+D5225   M
+G6996 o F
+
+_V_   Z
+_I_   R
+_G_   P
+_E_   N
+_N_   E
+_E_   N
+_R_   I
+_E_   N
+N   E
+E   N
+U   Y
+?   ?
+?   ?
+E   N
+Z   V
+*C*   L
+*R*   I
+*Y*   U
+*P*   G
+*T*   X
+*O*   F
+
+
+
+jkcx{uXLvCNwRnAXoWzPKhDNfRDanGIaSVzkc}
+     2121506_474617508.1720699249299
+
+21 21 5 06
+4 7 4 6 17 5 08
+17 20 6 9 9 24 9 2 9 9
+

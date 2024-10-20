@@ -1,0 +1,390 @@
+<style>p {margin:0 0 14px 0}.default-font-1727705028536 {font-size: 14px;font-family: 宋体, arial, Verdana, sans-serif}</style><div class="default-font-1727705028536"><style>p {margin:0 0 14px 0}.default-font-1720768715250 {font-size: 14px;font-family: 宋体, arial, Verdana, sans-serif}</style>
+<div class="default-font-1720768715250">
+<style>p {margin:0 0 14px 0}.default-font-1720699250180 {font-size: 14px;font-family: 宋体, arial, Verdana, sans-serif}</style>
+	<div class="default-font-1720699250180">
+		<p>
+			购票请到<a href="https://www.12306.cn/index/" target="_blank">12306</a>&nbsp;&nbsp;发货请到<a href="http://www.95306.cn/" target="_blank">95306</a>&nbsp; <a href="https://cx.12306.cn/tlcx/index.html" target="_blank">会员服务</a>&nbsp; <a href="http://cnrail.geogv.org/zhcn/about" target="_blank">友情链接</a> 
+		</p>
+		<table cellpadding="1" cellspacing="0" border="1" bordercolor="#000">
+			<tbody>
+				<tr>
+					<td style="width:73px;height:18px;">
+						车次
+					</td>
+					<td style="width:73px;height:18px;">
+						发站
+					</td>
+					<td style="width:73px;height:18px;">
+						到站
+					</td>
+					<td style="width:73px;height:18px;">
+						发时
+					</td>
+					<td style="width:73px;height:18px;">
+						到时
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						G1397
+					</td>
+					<td style="width:73px;height:18px;">
+						建德
+					</td>
+					<td style="width:73px;height:18px;">
+						婺源
+					</td>
+					<td style="width:73px;height:18px;">
+						09:14
+					</td>
+					<td style="width:73px;height:18px;">
+						10:44
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						<span style="text-wrap:wrap;">K1159</span><br>
+					</td>
+					<td style="width:73px;height:18px;">
+						兰考
+					</td>
+					<td style="width:73px;height:18px;">
+						许昌
+					</td>
+					<td style="width:73px;height:18px;">
+						22:30
+					</td>
+					<td style="width:73px;height:18px;">
+						01:20
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						G1485<br>
+					</td>
+					<td style="width:73px;height:18px;">
+						鹰潭北
+					</td>
+					<td style="width:73px;height:18px;">
+						武夷山北
+					</td>
+					<td style="width:73px;height:18px;">
+						14:12
+					</td>
+					<td style="width:73px;height:18px;">
+						15:07
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						C7401<br>
+					</td>
+					<td style="width:73px;height:18px;">
+						三亚
+					</td>
+					<td style="width:73px;height:18px;">
+						三亚
+					</td>
+					<td style="width:73px;height:18px;">
+						06:10
+					</td>
+					<td style="width:73px;height:18px;">
+						11:10
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						D6266
+					</td>
+					<td style="width:73px;height:18px;">
+						南昌
+					</td>
+					<td style="width:73px;height:18px;">
+						南昌
+					</td>
+					<td style="width:73px;height:18px;">
+						09:08
+					</td>
+					<td style="width:73px;height:18px;">
+						14:57
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						C7473
+					</td>
+					<td style="width:73px;height:18px;">
+						海口东
+					</td>
+					<td style="width:73px;height:18px;">
+						海口东
+					</td>
+					<td style="width:73px;height:18px;">
+						16:33
+					</td>
+					<td style="width:73px;height:18px;">
+						21:14
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						G276
+					</td>
+					<td style="width:73px;height:18px;">
+						漯河西
+					</td>
+					<td style="width:73px;height:18px;">
+						兰考南
+					</td>
+					<td style="width:73px;height:18px;">
+						12:45
+					</td>
+					<td style="width:73px;height:18px;">
+						13:55
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						G8343
+					</td>
+					<td style="width:73px;height:18px;">
+						合肥南
+					</td>
+					<td style="width:73px;height:18px;">
+						合肥南
+					</td>
+					<td style="width:73px;height:18px;">
+						14:22
+					</td>
+					<td style="width:73px;height:18px;">
+						17:05
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						G5556
+					</td>
+					<td style="width:73px;height:18px;">
+						济南
+					</td>
+					<td style="width:73px;height:18px;">
+						城阳
+					</td>
+					<td style="width:73px;height:18px;">
+						07:40
+					</td>
+					<td style="width:73px;height:18px;">
+						12:07
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						D7321
+					</td>
+					<td style="width:73px;height:18px;">
+						汕头
+					</td>
+					<td style="width:73px;height:18px;">
+						汕头
+					</td>
+					<td style="width:73px;height:18px;">
+						14:51
+					</td>
+					<td style="width:73px;height:18px;">
+						21:01
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						T136
+					</td>
+					<td style="width:73px;height:18px;">
+						余姚
+					</td>
+					<td style="width:73px;height:18px;">
+						嘉善
+					</td>
+					<td style="width:73px;height:18px;">
+						18:33
+					</td>
+					<td style="width:73px;height:18px;">
+						21:25
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						D1<br>
+					</td>
+					<td style="width:73px;height:18px;">
+						郑州
+					</td>
+					<td style="width:73px;height:18px;">
+						武昌
+					</td>
+					<td style="width:73px;height:18px;">
+						00:05
+					</td>
+					<td style="width:73px;height:18px;">
+						04:44
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						D2
+					</td>
+					<td style="width:73px;height:18px;">
+						武昌
+					</td>
+					<td style="width:73px;height:18px;">
+						郑州
+					</td>
+					<td style="width:73px;height:18px;">
+						21:23
+					</td>
+					<td style="width:73px;height:18px;">
+						02:04
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						C665
+					</td>
+					<td style="width:73px;height:18px;">
+						济南
+					</td>
+					<td style="width:73px;height:18px;">
+						济南
+					</td>
+					<td style="width:73px;height:18px;">
+						15:08
+					</td>
+					<td style="width:73px;height:18px;">
+						21:47
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						D3324
+					</td>
+					<td style="width:73px;height:18px;">
+						黄山北
+					</td>
+					<td style="width:73px;height:18px;">
+						千岛湖
+					</td>
+					<td style="width:73px;height:18px;">
+						08:39
+					</td>
+					<td style="width:73px;height:18px;">
+						09:22
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						G6357<br>
+					</td>
+					<td style="width:73px;height:18px;">
+						郴州西
+					</td>
+					<td style="width:73px;height:18px;">
+						汕头
+					</td>
+					<td style="width:73px;height:18px;">
+						18:26
+					</td>
+					<td style="width:73px;height:18px;">
+						22:57
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						K1160
+					</td>
+					<td style="width:73px;height:18px;">
+						信阳
+					</td>
+					<td style="width:73px;height:18px;">
+						徐州
+					</td>
+					<td style="width:73px;height:18px;">
+						00:34
+					</td>
+					<td style="width:73px;height:18px;">
+						10:46
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						D2282
+					</td>
+					<td style="width:73px;height:18px;">
+						宁波
+					</td>
+					<td style="width:73px;height:18px;">
+						上海虹桥
+					</td>
+					<td style="width:73px;height:18px;">
+						18:46
+					</td>
+					<td style="width:73px;height:18px;">
+						21:19
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						G830
+					</td>
+					<td style="width:73px;height:18px;">
+						漯河西
+					</td>
+					<td style="width:73px;height:18px;">
+						洛阳龙门
+					</td>
+					<td style="width:73px;height:18px;">
+						19:20
+					</td>
+					<td style="width:73px;height:18px;">
+						21:16
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						D5225
+					</td>
+					<td style="width:73px;height:18px;">
+						十堰东
+					</td>
+					<td style="width:73px;height:18px;">
+						恩施
+					</td>
+					<td style="width:73px;height:18px;">
+						11:19
+					</td>
+					<td style="width:73px;height:18px;">
+						19:35
+					</td>
+				</tr>
+				<tr>
+					<td style="width:73px;height:18px;">
+						G6996
+					</td>
+					<td style="width:73px;height:18px;">
+						潍坊
+					</td>
+					<td style="width:73px;height:18px;">
+						临沂北
+					</td>
+					<td style="width:73px;height:18px;">
+						16:16
+					</td>
+					<td style="width:73px;height:18px;">
+						19:51
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+			<br>
+		</p>
+	</div>
+</div></div>

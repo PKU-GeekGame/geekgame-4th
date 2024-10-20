@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Complexity{% endblock %}
+{% block content %}
+<h1>Complexity</h1>
+<p>欢迎来到图论的世界！</p>
+<p>很多图论算法在不同形状的图上的运行时间有着很大的区别，在极少数情况下才会逼近最坏复杂度。</p>
+<p>请点击下面的按钮选择你要挑战的算法。</p>
+<a href="{{ url_for('spfa') }}" class="btn btn-primary">SPFA</a></li>
+<a href="{{ url_for('dinic') }}" class="btn btn-primary">Dinic</a></li>
+{% endblock %}

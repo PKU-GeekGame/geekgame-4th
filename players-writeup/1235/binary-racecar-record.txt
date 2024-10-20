@@ -1,0 +1,28 @@
+Please input your token: 1235:MEYCIQCMy8hmvkPOvPxKEIH5oTnqFDa6z7uUzHsRft1hiwv7dwIhAP5Z0ikd4G5HZagPSrEZbK5UJnniNYwEqwz8QrCh-2M-
+for racecar drivers, there are two things to hope for: one is that you drive fast enough, and the other is that the opponent is slow enough.
+Brave and clever contestant,  win the race to get the flag!
+please enter the size to output your flag: 4
+please enter the content to read to buffer (max 0x100 bytes): 
+zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+please enter the size to read to the buffer:
+49
+input success!
+
+copying the flag...
+flag{i_Lik3_R4c3c4rS_v3ry_mUCh_d0_Y0u}
+
+
+--- 程序已退出 [retcode=0] ---
+
+
+--- 连接中断 ---
+
+
+
+
+
+
+
+
+
+

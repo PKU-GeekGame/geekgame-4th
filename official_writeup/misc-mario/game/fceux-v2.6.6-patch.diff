@@ -1,0 +1,248 @@
+diff --git a/src/drivers/Qt/ConsoleWindow.cpp b/src/drivers/Qt/ConsoleWindow.cpp
+index 92c870723..6d0ff7eae 100644
+--- a/src/drivers/Qt/ConsoleWindow.cpp
++++ b/src/drivers/Qt/ConsoleWindow.cpp
+@@ -161,6 +161,10 @@ consoleWin_t::consoleWin_t(QWidget *parent)
+ 	g_config->getOption( "SDL.Sound.UseGlobalFocus", &soundUseGlobalFocus );
+ 	g_config->getOption ("SDL.VideoDriver", &videoDriver);
+ 
++	int noframe = 0;
++	g_config->getOption("SDL.NoFrame", &noframe);
++	menubar->setVisible( !noframe );
++
+ 	loadVideoDriver( videoDriver );
+ 
+ 	setWindowTitle( tr(FCEU_NAME_AND_VERSION) );
+diff --git a/src/drivers/Qt/fceuWrapper.cpp b/src/drivers/Qt/fceuWrapper.cpp
+index c907b1046..5bc2b0df7 100644
+--- a/src/drivers/Qt/fceuWrapper.cpp
++++ b/src/drivers/Qt/fceuWrapper.cpp
+@@ -56,10 +56,6 @@
+ #include "../../profiler.h"
+ #include "../../version.h"
+ 
+-#ifdef _S9XLUA_H
+-#include "../../fceulua.h"
+-#endif
+-
+ #include "common/os_utils.h"
+ #include "common/configSys.h"
+ #include "utils/timeStamp.h"
+@@ -1105,35 +1101,6 @@ int  fceuWrapperInit( int argc, char *argv[] )
+         periodic_saves = 0;
+     }
+ 	
+-#ifdef _S9XLUA_H
+-	// load lua script if option passed
+-	g_config->getOption("SDL.LuaScript", &s);
+-	g_config->setOption("SDL.LuaScript", "");
+-	if (s.size() > 0)
+-	{
+-		QFileInfo fi( s.c_str() );
+-
+-		// Resolve absolute path to file
+-		if ( fi.exists() )
+-		{
+-			//printf("FI: '%s'\n", fi.absoluteFilePath().toStdString().c_str() );
+-			//printf("FI: '%s'\n", fi.canonicalFilePath().toStdString().c_str() );
+-			s = fi.canonicalFilePath().toStdString();
+-		}
+-//#if defined(__linux__) || defined(__APPLE__) || defined(__unix__)
+-//
+-//		// Resolve absolute path to file
+-//		char fullpath[2048];
+-//		if ( realpath( s.c_str(), fullpath ) != NULL )
+-//		{
+-//			printf("Fullpath: '%s'\n", fullpath );
+-//			s.assign( fullpath );
+-//		}
+-//#endif
+-		FCEU_LoadLuaCode(s.c_str());
+-	}
+-#endif
+-	
+ 	g_config->getOption("SDL.NewPPU", &newppu);
+ 	g_config->getOption("SDL.Frameskip", &frameskip);
+ 
+diff --git a/src/drivers/Qt/main.cpp b/src/drivers/Qt/main.cpp
+index 1704a5d64..f3550d680 100644
+--- a/src/drivers/Qt/main.cpp
++++ b/src/drivers/Qt/main.cpp
+@@ -22,6 +22,7 @@
+ #include <QApplication>
+ #include <QSplashScreen>
+ #include <QSettings>
++#include <QFileInfo>
+ //#include <QProxyStyle>
+ 
+ #include "Qt/ConsoleWindow.h"
+@@ -32,6 +33,10 @@
+ #include <QtPlatformHeaders/QWindowsWindowFunctions>
+ #endif
+ 
++#ifdef _S9XLUA_H
++#include "../../fceulua.h"
++#endif
++
+ consoleWin_t *consoleWindow = NULL;
+ 
+ static void MessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+@@ -167,6 +172,38 @@ int main( int argc, char *argv[] )
+ 		//delete splash; this is handled by Qt event loop
+ 	}
+ 
++#ifdef _S9XLUA_H
++	// load lua script if option passed
++	std::string s;
++	g_config->getOption("SDL.LuaScript", &s);
++	g_config->setOption("SDL.LuaScript", "");
++	if (s.size() > 0)
++	{
++		QFileInfo fi( s.c_str() );
++
++		// Resolve absolute path to file
++		if ( fi.exists() )
++		{
++			//printf("FI: '%s'\n", fi.absoluteFilePath().toStdString().c_str() );
++			//printf("FI: '%s'\n", fi.canonicalFilePath().toStdString().c_str() );
++			s = fi.canonicalFilePath().toStdString();
++		}
++//#if defined(__linux__) || defined(__APPLE__) || defined(__unix__)
++//
++//		// Resolve absolute path to file
++//		char fullpath[2048];
++//		if ( realpath( s.c_str(), fullpath ) != NULL )
++//		{
++//			printf("Fullpath: '%s'\n", fullpath );
++//			s.assign( fullpath );
++//		}
++//#endif
++		FCEU_WRAPPER_LOCK();
++		FCEU_LoadLuaCode(s.c_str());
++		FCEU_WRAPPER_UNLOCK();
++	}
++#endif
++
+ 	retval = app.exec();
+ 
+ 	//printf("App Return: %i \n", retval );
+diff --git a/src/drivers/Qt/sdl-video.cpp b/src/drivers/Qt/sdl-video.cpp
+index d8b72a0dc..a6148ec29 100644
+--- a/src/drivers/Qt/sdl-video.cpp
++++ b/src/drivers/Qt/sdl-video.cpp
+@@ -59,7 +59,6 @@ static int s_inited = 0;
+ static int s_eefx = 0;
+ static int s_clipSides = 0;
+ static int s_fullscreen = 0;
+-static int noframe = 0;
+ static int initBlitToHighDone = 0;
+ 
+ #define NWIDTH	(256 - (s_clipSides ? 16 : 0))
+@@ -202,7 +201,6 @@ int InitVideo(FCEUGI *gi)
+ 	g_config->getOption("SDL.XStretch", &xstretch);
+ 	g_config->getOption("SDL.YStretch", &ystretch);
+ 	g_config->getOption("SDL.ClipSides", &s_clipSides);
+-	g_config->getOption("SDL.NoFrame", &noframe);
+ 	g_config->getOption("SDL.ShowFPS", &show_fps);
+ 	g_config->getOption("SDL.ShowFrameCount", &frame_display);
+ 	g_config->getOption("SDL.ShowLagCount", &lagCounterDisplay);
+diff --git a/src/lua-engine.cpp b/src/lua-engine.cpp
+index 6ca7a4bb5..c330330f7 100644
+--- a/src/lua-engine.cpp
++++ b/src/lua-engine.cpp
+@@ -691,6 +691,14 @@ static int emu_exit(lua_State *L) {
+ 	return 0;
+ }
+ 
++// emu.terminate()
++//
++// Teriminate the fceux
++static int emu_terminate(lua_State *L) {
++	std::exit((int)luaL_checkinteger(L, 1));
++	return 0;
++}
++
+ static int emu_registerbefore(lua_State *L) {
+ 	if (!lua_isnil(L,1))
+ 		luaL_checktype(L, 1, LUA_TFUNCTION);
+@@ -4112,10 +4120,9 @@ static int gui_savescreenshotas(lua_State *L) {
+ 	name = luaL_checklstring(L,1,&l);
+ 	lua_pushstring(L, name);
+ 	if (name)
+-		FCEUI_SetSnapshotAsName(name);
++		SaveSnapshot(name);
+ 	else
+ 		luaL_error(L,"gui.savesnapshotas must have a string parameter");
+-	FCEUI_SaveSnapshotAs();
+ 	return 1;
+ }
+ 
+@@ -6064,6 +6071,7 @@ static const struct luaL_reg emulib [] = {
+ 	{"loadrom", emu_loadrom},
+ 	{"print", print}, // sure, why not
+ 	{"exit", emu_exit}, // useful for run-and-close scripts
++	{"terminate", emu_terminate},
+ 	{NULL,NULL}
+ };
+ 
+diff --git a/src/utils/timeStamp.cpp b/src/utils/timeStamp.cpp
+index f62d019fb..9d86e2191 100644
+--- a/src/utils/timeStamp.cpp
++++ b/src/utils/timeStamp.cpp
+@@ -18,12 +18,30 @@
+ #include <intrin.h>
+ #pragma intrinsic(__rdtsc)
+ #else
++#if defined(__x86_64__) || defined(__i386__)
+ #include <x86intrin.h>
+ #endif
++#endif
+ 
+ static uint64_t rdtsc()
+ {
++#if defined(__aarch64__) || defined(__arm64__) || defined(__arm__)
++    // SPDX-License-Identifier: GPL-2.0
++    uint64_t val = 0;
++
++    /*
++     * According to ARM DDI 0487F.c, from Armv8.0 to Armv8.5 inclusive, the
++     * system counter is at least 56 bits wide; from Armv8.6, the counter
++     * must be 64 bits wide.  So the system counter could be less than 64
++     * bits wide and it is attributed with the flag 'cap_user_time_short'
++     * is true.
++     */
++    asm volatile("mrs %0, cntvct_el0" : "=r" (val));
++
++    return val;
++#else
+ 	return __rdtsc();
++#endif
+ }
+ 
+ namespace FCEU
+diff --git a/src/video.cpp b/src/video.cpp
+index b0f7dd0d4..f1df26be7 100644
+--- a/src/video.cpp
++++ b/src/video.cpp
+@@ -618,7 +618,7 @@ PNGerr:
+ }
+ 
+ //overloaded SaveSnapshot for "Savesnapshot As" function
+-int SaveSnapshot(char fileName[512])
++int SaveSnapshot(const char *fileName)
+ {
+ 	int totallines=FSettings.LastSLine-FSettings.FirstSLine+1;
+ 	int x,y;
+diff --git a/src/video.h b/src/video.h
+index 7fbb6badf..8494a3354 100644
+--- a/src/video.h
++++ b/src/video.h
+@@ -3,7 +3,7 @@
+ int FCEU_InitVirtualVideo(void);
+ void FCEU_KillVirtualVideo(void);
+ int SaveSnapshot(void);
+-int SaveSnapshot(char[]);
++int SaveSnapshot(const char *);
+ void ResetScreenshotsCounter();
+ uint32 GetScreenPixel(int x, int y, bool usebackup);
+ int GetScreenPixelPalette(int x, int y, bool usebackup);

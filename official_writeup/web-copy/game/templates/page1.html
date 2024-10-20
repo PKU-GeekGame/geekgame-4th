@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>不许复制 · Hard 难度</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(270deg, #000000, #003300, #000000);
+            background-size: 600% 600%;
+            animation: gradientAnimation 15s ease infinite;
+            color: #0F0;
+            font-family: "comic sans ms", sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        #centralBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 250px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #0F0;
+            border-radius: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 5;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #centralNoiseContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .centralNoiseContent {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            white-space: nowrap;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
+        }
+
+        .noiseLine {
+            color: rgba(0, 255, 0, 0.6);
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 3px rgba(0, 255, 0, 0.5);
+            margin: 5px 0;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        #centralBoxContent {
+            position: relative;
+            z-index: 3;
+            color: #0F0;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 5px #0F0;
+            white-space: pre-wrap;
+            text-align: center;
+            line-height: 1.5;
+            animation: centralFlicker 5s infinite;
+        }
+
+        @keyframes centralFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        #inputContainer {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 6;
+            display: flex;
+            align-items: center;
+        }
+        #noiseInput {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #0F0;
+            background-color: #000;
+            color: #0F0;
+            outline: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        #noiseInput:focus {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #0F0;
+        }
+
+        #submitBtn {
+            margin-left: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #0F0;
+            background-color: #000;
+            color: #0F0;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        #submitBtn:hover {
+            background-color: #0F0;
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #0F0;
+        }
+
+        body {
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
+            user-select: none;
+        }
+
+        #message {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 7;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #0F0;
+            padding: 10px 20px;
+            border: 2px solid #0F0;
+            border-radius: 5px;
+            display: none;
+            opacity: 0;
+            animation: fadeInOut 4s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        #message.error {
+            border-color: #F00;
+            color: #F00;
+        }
+
+        #message.success {
+            border-color: #0F0;
+            color: #0F0;
+        }
+
+        #noiseContainer,
+        #floatingBoxesContainer,
+        #floatingTextContainer,
+        #additionalFloatingCharsContainer {
+            display: none;
+        }
+
+        #floatingElementsContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; 
+            z-index: 4; 
+            overflow: hidden;
+        }
+
+        .floating-char {
+            position: absolute;
+            color: rgba(0, 255, 0, 0.8);
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 0 2px rgba(0, 255, 0, 0.5);
+            user-select: none;
+            animation: floatUp linear infinite;
+        }
+
+        .floating-block {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(0, 255, 0, 0.5);
+            border: 1px solid rgba(0, 255, 0, 0.8);
+            border-radius: 4px;
+            opacity: 0.7;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100%) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100%) translateX(50px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="message"></div>
+
+    <div id="centralBox">
+        <div id="centralNoiseContainer">
+            <div class="centralNoiseContent" id="centralNoiseContent1" style="opacity: 0">{{ data.challenge }}</div>
+        </div>
+        <div id="centralBoxContent">
+        </div>
+        <div id="floatingElementsContainer"></div>
+    </div>
+
+    <div id="inputContainer">
+        <form action="?" method="post">
+            <input type="text" id="noiseInput" name="response" placeholder="输入验证码" autocomplete="off" required pattern="[IJl\|1O0\(\)i!\s]+">
+            <input type="hidden" name="ts" value="{{ data.ts }}">
+            <input type="hidden" name="certificate" value="{{ data.certificate }}">
+            <button id="submitBtn" type="submit">提交</button>
+        </form>
+    </div>
+
+    <script src="/static/js/page1.max.js"></script>
+</body>
+</html>

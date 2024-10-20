@@ -1,0 +1,15 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build-1": "javascript-obfuscator page1.js --output ../game/static/js/page1.max.js --self-defending true --split-strings true --split-strings-chunk-length 4 --string-array-calls-transform true --string-array-encoding rc4 --string-array-wrappers-count 6 --string-array-wrappers-parameters-max-count 5 --string-array-wrappers-type function --transform-object-keys true --rename-globals true --rename-properties true --numbers-to-expressions true --dead-code-injection true --control-flow-flattening true",
+    "build-2": "javascript-obfuscator page2.js --output ../game/static/js/page2.max.js --self-defending true --split-strings-chunk-length 6 --string-array-calls-transform true --string-array-encoding base64 --string-array-wrappers-count 3 --string-array-wrappers-parameters-max-count 2 --string-array-wrappers-type function --transform-object-keys true --rename-globals true --rename-properties true --numbers-to-expressions true --dead-code-injection true --control-flow-flattening true --reserved-names hackr --reserved-strings hackr",
+    "build-2-test": "javascript-obfuscator page2.js --output ../game/static/js/page2.max.js --transform-object-keys true --rename-globals true --rename-properties true --reserved-names hackr --reserved-strings hackr --string-array false"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "javascript-obfuscator": "^4.1.1"
+  }
+}
