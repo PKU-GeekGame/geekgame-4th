@@ -101,13 +101,13 @@
 
 ![image-20241019230217150](assets/image-20241019230217150.png)
 
-或者直接把网页 ctrl+S 保存下来（注意你的浏览器版本需要[比较新](https://web.dev/articles/declarative-shadow-dom)，才能把 Shadow DOM 里面的内容也存下载）。
+或者直接把网页 ctrl+S 保存下来（注意你的浏览器版本需要[比较新](https://web.dev/articles/declarative-shadow-dom)，才能把 Shadow DOM 里面的内容也存下来）。
 
 然后拿 Python 写个脚本把所有的 `::before` 和 `::after` 的值都计算出来，拼在一起得到验证码。这样写比较繁琐，但至少是一个思路上非常直接的做法，推荐不了解上面那个 ctrl+P 打印的套路的选手使用。虽然写脚本有点累，但至少能在合理的时间内稳定把这题过了。
 
 ### 试图解码 DOM · 其二
 
-可以利用 getComputedStyle 函数直接计算出每个伪元素的文本。于是也不用 Python 硬搞了，写个 JS 提一下就好了。
+可以利用 `getComputedStyle` 函数直接计算出每个伪元素的文本。于是也不用 Python 硬搞了，写个 JS 获取一下就好了。
 
 ![image-20241019232051752](assets/image-20241019232051752.png)
 

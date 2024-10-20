@@ -157,7 +157,7 @@ aaa.refs.editor.getCodeMirror().setValue('document.title=Object.keys(compileCach
 aaa.runCode();
 ```
 
-也有人直接给编辑器发 ctrl+Z 撤销的。同学你是不是刚做完 web-crx 回来？
+也有人直接给编辑器发 ctrl+Z 撤销的。同学你是不是刚做完 [web-crx](../web-crx) 回来？
 
 ```javascript
 let textarea = document.querySelector('.CodeMirror textarea');
