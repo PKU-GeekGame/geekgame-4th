@@ -1,0 +1,11 @@
+_top.eval("\
+	var h = document.getElementsByClassName('CodeMirror')[0].CodeMirror.doc.history.done;\
+	for (var e of h) {\
+		if (e.changes !== undefined){\
+			var text = e.changes[0].text[0];\
+			if (text.slice(0, 7) == 'console') {\
+				document.title = text;\
+			}\
+		}\
+	}\
+");

