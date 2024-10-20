@@ -159,7 +159,7 @@ p.interactive()
 
 ### 优秀选手解法
 
- - 下面的脚本可以秒出 Flag 1，参见清华大学选手 [Vursc 的 writeup](../../players-writeup/1273) （确实是“完美的解法”）：
+ - 下面的脚本可以秒出 Flag 1，参见清华大学选手 [Vursc 的 writeup](../../players_writeup/1273) （确实是“完美的解法”）：
 > 完美的解法（出结果用不了一秒钟）：
 > ```
 > while
@@ -167,7 +167,7 @@ p.interactive()
 >     grep -q assert err;
 > do :; done
 > ```
- - 其实不利用 `is_admin` 也不调用 `system` 同样能拿 Flag 2，参见清华大学选手 [tony 的 writeup](../../players-writeup/700)：
+ - 其实不利用 `is_admin` 也不调用 `system` 同样能拿 Flag 2，参见清华大学选手 [tony 的 writeup](../../players_writeup/700)：
 > 而利用这点修改了别的`BoxedData`的data指针后，也就能任意位置读取了。
 > [ .. ]
 > 总之我采取了另一个方法，利用的是调用的虚函数的返回值是会打印出来的这一点，首先执行`open64(./flag2.txt, 0)`，返回值`fd`会被打印到命令行（其实不打印的话也大概率可以猜是3）。然后再调用`read(fd, buf, ...)`，当然，第三个参数是没法控制的，因为override的虚函数只有前两个参数，只好听天由命希望这个值足够大就行。事实上，确实work了，最后读取`buf`的内容就是flag2了。
