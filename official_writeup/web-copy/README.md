@@ -113,7 +113,7 @@
 
 什么，你说终端上的内容总是自动清空，根本用不了？运行一下 `console.clear = ()=>{}` 就瞬间老实，或者勾上 Console 设置里的 “Preserve log” 也可以。 
 
-需要注意所有 DOM 内容都被包在一层 Shadow DOM 里，你可以弄个油猴脚本在页面 JS 运行之前先 hook 掉 `attachShadow` 使得能拿到 Shadow DOM，也可以直接在开发者工具里（如果你能成功打开的话）点进里面的元素然后用 `$0` 变量。
+需要注意所有 DOM 内容都被包在一层 Shadow DOM 里，你可以弄个油猴脚本在页面 JS 运行之前先 hook 掉 `attachShadow` 使得能拿到 Shadow DOM（参见 [选手 Writeup](../../players_writeup/2042)），也可以直接在开发者工具里（如果你能成功打开的话）点进里面的元素然后用 `$0` 变量。
 
 ### 直接逆向 JS 程序
 

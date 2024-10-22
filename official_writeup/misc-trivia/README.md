@@ -1,6 +1,6 @@
 # [Misc] 清北问答
 
-- 命题人：xmcp, et al.
+- 命题人：xmcp、debugger
 - Flag 1：150 分
 - Flag 2：200 分
 
